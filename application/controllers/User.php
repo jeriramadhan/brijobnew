@@ -156,46 +156,4 @@ class User extends CI_Controller
             $this->load->view('user/listtask', $data);
         }
     }
-
-    public function addtask()
-    {
-        $task = $this->product_model;
-        $validation = $this->form_validation;
-        $validation->set_rules($task->rules());
-
-        if ($validation->run()) {
-            $task->save();
-            $this->session->set_flashdata('success', 'Berhasil disimpan');
-        }
-
-        $this->load->view("user/createtask");
-    }
-
-    public function edittask($id = null)
-    {
-        if (!isset($id)) redirect('user');
-
-        $task = $this->task_model;
-        $validation = $this->form_validation;
-        $validation->set_rules($task->rules());
-
-        if ($validation->run()) {
-            $task->update();
-            $this->session->set_flashdata('success', 'Berhasil disimpan');
-        }
-
-        $data["task"] = $task->getById($id);
-        if (!$data["task"]) show_404();
-
-        $this->load->view("user/editask", $data);
-    }
-
-    public function delete($id = null)
-    {
-        if (!isset($id)) show_404();
-
-        if ($this->task_model->delete($id)) {
-            redirect(site_url('user'));
-        }
-    }
 }
