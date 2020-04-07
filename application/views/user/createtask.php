@@ -64,7 +64,7 @@
                  <select class="form-control" id="assign" name="assign">
                  <?php foreach($getUser as $row)
                  {
-                     echo '<option value="'.$row->name.'">'.$row->name.'</option>';
+                     echo '<option value="'.$row->name.'">'.$row->name.'</option>'; //nampilin kodenya disini
                  }
                 ?>
                 </select>
