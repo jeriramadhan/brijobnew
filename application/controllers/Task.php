@@ -29,6 +29,7 @@ class Task extends CI_Controller
     {
         $data['title'] = 'Create Task';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['getUser'] = $this->task_model->getAllUser();
 
         $task = $this->task_model;
         $validation = $this->form_validation;

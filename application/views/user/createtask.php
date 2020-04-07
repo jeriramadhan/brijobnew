@@ -59,9 +59,16 @@
                  </div>
              </div>
              <div class="form-group row">
-                 <label for="assign" class="col-sm-2 col-form-label">Assign to</label>
+                 <div class="col-sm-2">Assign</div>
                  <div class="col-sm-10">
-                     <input type="text" class="form-control" id="assign" name="assign">
+                 <select class="form-control" id="assign" name="assign">
+                 <?php foreach($getUser as $row)
+                 {
+                     echo '<option value="'.$row->name.'">'.$row->name.'</option>';
+                 }
+                ?>
+                </select>
+                     <!-- <input type="text" class="form-control" id="assign" name="assign"> -->
                      <?= form_error('assign', '<small class="text-danger pl-3">', '</small>'); ?>
                  </div>
              </div>

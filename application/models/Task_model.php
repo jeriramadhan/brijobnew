@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Task_model extends CI_Model
 {
     private $_table = "user_task";
+    private $table_user = "user";
 
     public $id;
     public $name;
@@ -58,6 +59,12 @@ class Task_model extends CI_Model
     {
         return $this->db->get_where($this->_table, ["id" => $id])->row();
     }
+
+    public function getAllUser(){
+        $query = $this->db->query('SELECT name FROM user where role_id = 2');
+        return $query->result();
+    }
+    
 
     public function save()
     {

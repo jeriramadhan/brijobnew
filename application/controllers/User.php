@@ -144,6 +144,7 @@ class User extends CI_Controller
     {
         $data['title'] = 'Create Task';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['getUser'] = $this->task_model->getAllUser();
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -153,6 +154,7 @@ class User extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data['createTask'] = $this->task_model->getAll();
+            $data['getUser'] = $this->task_model->getAllUser();
             $this->load->view('user/listtask', $data);
         }
     }
