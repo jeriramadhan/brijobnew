@@ -3,6 +3,7 @@
 
      <!-- Page Heading -->
      <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
+     <?= $this->session->flashdata('message'); ?>
      <div class="row">
          <div class="col-md-6 mb-3">
              <a href="<?= base_url('task/createtask'); ?>" class="btn btn-primary">Add New</a>
@@ -18,6 +19,7 @@
                      <th scope="col">Duration</th>
                      <th scope="col">Assign to</th>
                      <th scope="col">Information</th>
+                     <th scope="col">Progress</th>
                      <th scope="col">Action</th>
                  </tr>
              </thead>
@@ -47,7 +49,11 @@
                              <?= $t->assign ?>
                          </td>
                          <td class="150">
-                             <?= substr($t->info, 0, 120) ?></td>
+                             <?= substr($t->info, 0, 120) ?>
+                         </td>
+                         <td width="150">
+                             <?= $t->progress; ?>
+                         </td>
                          <td width="250">
                              <a href="<?= base_url("task/update"); ?>" class="btn btn-small text-warning"><i class="fas fa-fw fa-edit"></i> Update</a>
                              <a onclick="deleteConfirm('<?= base_url('task/deletetask/' . $t->id) ?>')" href="#!" class="btn btn-small text-success"><i class="fas fa-fw fa-check-circle"></i> Done</a>

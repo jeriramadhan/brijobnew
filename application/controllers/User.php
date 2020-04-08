@@ -115,19 +115,6 @@ class User extends CI_Controller
         }
     }
 
-
-    public function listTask()
-    {
-        $data['title'] = 'List Task';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('user/listtask', $data);
-        $this->load->view('templates/footer');
-    }
-
     public function myTask()
     {
         $data['title'] = 'My Task';
@@ -155,7 +142,8 @@ class User extends CI_Controller
         } else {
             $data['createTask'] = $this->task_model->getAll();
             $data['getUser'] = $this->task_model->getAllUser();
-            $this->load->view('user/listtask', $data);
+            $this->load->view('task', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Create task has been saved!</div>');
         }
     }
 }

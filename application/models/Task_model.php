@@ -60,11 +60,12 @@ class Task_model extends CI_Model
         return $this->db->get_where($this->_table, ["id" => $id])->row();
     }
 
-    public function getAllUser(){
-        $query = $this->db->query('SELECT name FROM user where role_id = 2');
+    public function getAllUser()
+    {
+        $query = $this->db->query('SELECT name FROM user where role_id = 3');
         return $query->result();
     }
-    
+
 
     public function save()
     {
@@ -81,19 +82,31 @@ class Task_model extends CI_Model
 
     public function update()
     {
-        $post = $this->input->post();
-        $this->id = $post["id"];
-        $this->name = $post["name"];
-        $this->detik = $post["detik"];
-        $this->priority = $post["priority"];
-        $this->duration = $post["duration"];
-        $this->assign = $post["assign"];
-        $this->info = $post["info"];
-        return $this->db->update($this->_table, $this, array('id' => $post['id']));
+        $query = $this->db->query('SELECT progress FROM user_task');
+        return $query->result();
     }
 
     public function delete($id)
     {
         return $this->db->delete($this->_table, array("id" => $id));
+    }
+
+    private function _uploadFile()
+    {
+        $config['upload_path']          = './assets/img/file/';
+        $config['allowed_types']        = 'pdf|docx|jpg';
+        $config['file_name']            = $this->id;
+        $config['overwrite']            = true;
+        $config['max_size']             = 1024; // 1MB
+        // $config['max_width']            = 1024;
+        // $config['max_height']           = 768;
+
+        $this->load->library('update', $config);
+
+        if ($this->upload->do_upload('attach')) {
+            return $this->upload->data("file_name");
+        }
+
+        return "default.pdf";
     }
 }

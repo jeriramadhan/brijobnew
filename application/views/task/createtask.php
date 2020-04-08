@@ -59,9 +59,15 @@
                  </div>
              </div>
              <div class="form-group row">
-                 <label for="assign" class="col-sm-2 col-form-label">Assign to</label>
+                 <div class="col-sm-2">Assign</div>
                  <div class="col-sm-10">
-                     <input type="text" class="form-control" id="assign" name="assign">
+                     <select class="form-control" id="assign" name="assign">
+                         <?php foreach ($getUser as $row) {
+                                echo '<option value="' . $row->name . '">' . $row->name . '</option>'; //nampilin kodenya disini
+                            }
+                            ?>
+                     </select>
+                     <!-- <input type="text" class="form-control" id="assign" name="assign"> -->
                      <?= form_error('assign', '<small class="text-danger pl-3">', '</small>'); ?>
                  </div>
              </div>
@@ -72,6 +78,13 @@
                      <?= form_error('info', '<small class="text-danger pl-3">', '</small>'); ?>
                  </div>
              </div>
+             <!-- <div class="form-group row">
+                 <label for="progress" class="col-sm-2 col-form-label">Progress</label>
+                 <div class="col-sm-10">
+                     <input type="text" class="form-control" id="progree" name="progress"></input>
+                     <?= form_error('info', '<small class="text-danger pl-3">', '</small>'); ?>
+                 </div>
+             </div> -->
              <div class="form-group row float-right">
                  <div class="col-sm-10">
                      <button type="submit" class="btn btn-primary">Save</button>

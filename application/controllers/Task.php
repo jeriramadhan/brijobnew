@@ -35,6 +35,14 @@ class Task extends CI_Controller
         $validation = $this->form_validation;
         $validation->set_rules($task->rules());
 
+        if ('dateinput == datenow') {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 3 days left!</div>');
+        } elseif ('dateinput == (datenow - 1)') {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 2 days left!</div>');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 1 days left!</div>');
+        }
+
         if ($validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -65,38 +73,30 @@ class Task extends CI_Controller
         $data['title'] = 'Update';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('task/update', $data);
-        $this->load->view('templates/footer');
-    }
 
-    public function edit($id = null)
-    {
-        if (!isset($id)) redirect('task');
+        $this->load->model('Task_model', 'update');
 
-        $product = $this->product_model;
-        $validation = $this->form_validation;
-        $validation->set_rules($task->rules());
+        $data['update'] = $this->db->get('user_task')->result_array();
 
-        if ($validation->run()) {
-            $task->update();
-            $this->session->set_flashdata('success', 'Berhasil disimpan');
-        }
+        $this->form_validation->set_rules('progress', 'Progress', 'required|trim');
+        // $this->form_validation->set_rules('status', 'Status');
 
-        $data["product"] = $product->getById($id);
-        if (!$data["product"]) show_404();
 
-        $this->load->view("admin/product/edit_form", $data);
-    }
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('task/update', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'progress' => $this->input->post('progress')
+                // 'status' => $this->input->post('status')
+            ];
 
-    public function delete($id = null)
-    {
-        if (!isset($id)) show_404();
-
-        if ($this->product_model->delete($id)) {
-            redirect(site_url('admin/products'));
+            $this->db->insert('user_task', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update has been saved!</div>');
+            redirect('task');
         }
     }
 }
