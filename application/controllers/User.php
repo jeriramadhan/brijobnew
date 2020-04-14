@@ -118,7 +118,10 @@ class User extends CI_Controller
     public function myTask()
     {
         $data['title'] = 'My Task';
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $nama = $user['name'];
+        $data['kerjaan'] = $this->task_model->getKerjaanUser($nama);
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -146,4 +149,46 @@ class User extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Create task has been saved!</div>');
         }
     }
+
+        public function updateTask()
+    {
+        $data['title'] = 'Update';
+        $nama2 = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $nama = $nama2['name'];
+
+        $this->load->model('Task_model', 'update');
+
+        $data['update'] = $this->db->get('user_task')->result_array();
+
+        $this->form_validation->set_rules('progress', 'Progress', 'required|trim');
+        // $this->form_validation->set_rules('status', 'Status');
+
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('user/updateTask', $data);
+            $this->load->view('templates/footer');
+        } else {
+
+            $data = array(
+                'progress' => $this->input->post('progress'),
+                'status' => $this->input->post('status')
+            );
+                // $progress = $this->input->post('progress');
+                // $status = $this->input->post('status');
+                $this->db->set($data);
+                // $this->db->set('status', $status);
+                $this->db->where('name', $nama);
+                $this->db->update('user_task');
+
+            // $this->db->insert('user_task', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update has been saved!</div>');
+            redirect('user/mytask');
+        }
+    }
+
+    
 }

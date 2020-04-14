@@ -66,6 +66,12 @@ class Task_model extends CI_Model
         return $query->result();
     }
 
+    public function getKerjaanUser($nama)
+    {
+        $query = $this->db->query('SELECT * FROM user_task where assign = "'.$nama.'"');
+        return $query->result();
+    }
+
 
     public function save()
     {

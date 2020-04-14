@@ -12,10 +12,46 @@
                      <th scope="col">File</th>
                      <th scope="col">Priority</th>
                      <th scope="col">Duration</th>
-                     <th scope="col">Information</th>
+                     <th scope="col">Assign</th>
+                     <th scope="col">Progress</th>
                      <th scope="col">Action</th>
                  </tr>
              </thead>
+             <tbody>
+                 <?php $i = 1; ?>
+                 <?php foreach ($kerjaan as $t) : ?>
+
+                     <tr>
+                         <td width="50">
+                             <?= $i; ?>
+                         </td>
+                         <td width="150">
+                             <?= $t->name; ?>
+                         </td>
+                         
+                         <td>
+                             <img src="<?= base_url('./assets/img/file/' . $t->attach) ?>" width="64" />
+                         </td>
+                         <td width="150">
+                             <?= $t->priority ?>
+                         </td>
+                         
+                         <td width="150">
+                             <?= $t->duration ?>
+                         </td>
+                         <td width="150">
+                             <?= $t->assign ?>
+                         </td>
+                         <td width="150">
+                             <?= $t->progress; ?>
+                         </td>
+                         <td width="250">
+                             <a href="<?= base_url("user/updateTask"); ?>" class="btn btn-small text-warning"><i class="fas fa-fw fa-edit"></i> Update</a>
+                             
+                         </td>
+                     </tr>
+                     <?php $i++; ?>
+                 <?php endforeach; ?>
 
          </table>
 
