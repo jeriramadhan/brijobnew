@@ -68,7 +68,7 @@ class Task_model extends CI_Model
 
     public function getKerjaanUser($nama)
     {
-        $query = $this->db->query('SELECT * FROM user_task where assign = "'.$nama.'"');
+        $query = $this->db->query('SELECT * FROM user_task where assign = "' . $nama . '"');
         return $query->result();
     }
 
@@ -86,11 +86,20 @@ class Task_model extends CI_Model
         return $this->db->insert($this->_table, $this);
     }
 
-    public function update()
-    {
-        $query = $this->db->query('SELECT progress FROM user_task');
-        return $query->result();
-    }
+    // public function update()
+    // {
+    //     // $post = $this->input->post();
+    //     // $this->id = $post["id"];
+    //     // $this->name = $post["name"];
+    //     // $this->detik = $post["detik"];
+    //     // $this->priority = $post["priority"];
+    //     // $this->duration = $post["duration"];
+    //     // $this->assign = $post["assign"];
+    //     // $this->info = $post["info"];
+    //     // return $this->db->update($this->_table, $this, array('id' => $post['id']));
+    //     $query = $this->db->query('SELECT progress FROM user_task');
+    //     return $query->result();
+    // }
 
     public function delete($id)
     {
@@ -114,5 +123,16 @@ class Task_model extends CI_Model
         }
 
         return "default.pdf";
+    }
+
+    public function ambil_where($where, $_table)
+    {
+        return $this->db->get_where($_table, $where);
+    }
+
+    public function update($where, $data, $_table)
+    {
+        $this->db->where($where);
+        $this->db->update($_table, $data);
     }
 }

@@ -28,14 +28,14 @@
                          <td width="150">
                              <?= $t->name; ?>
                          </td>
-                         
+
                          <td>
                              <img src="<?= base_url('./assets/img/file/' . $t->attach) ?>" width="64" />
                          </td>
                          <td width="150">
                              <?= $t->priority ?>
                          </td>
-                         
+
                          <td width="150">
                              <?= $t->duration ?>
                          </td>
@@ -46,8 +46,8 @@
                              <?= $t->progress; ?>
                          </td>
                          <td width="250">
-                             <a href="<?= base_url("user/updateTask"); ?>" class="btn btn-small text-warning"><i class="fas fa-fw fa-edit"></i> Update</a>
-                             
+                             <a href="<?= base_url('user/editTask/' . $t->id) ?>" class="btn btn-small"><i class="fas fa-edit"></i> Update</a>
+
                          </td>
                      </tr>
                      <?php $i++; ?>

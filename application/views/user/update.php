@@ -4,7 +4,7 @@
      <!-- Page Heading -->
      <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
-     <?= form_open('task/updateTask'); ?>
+     <?= form_open('user/updateTask'); ?>
 
      <?php foreach ($progress as $task) : ?>
          <div class="progress">

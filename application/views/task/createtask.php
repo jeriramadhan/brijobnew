@@ -47,16 +47,12 @@
                  </div>
              </div>
              <div class="form-group row">
-                 <div class="col-sm-2">Duration</div>
+                 <label for="duration" class="col-sm-2 col-form-label">Duration</label>
                  <div class="col-sm-10">
-                     <select class="form-control" id="duration" name="duration">
-                         <option value="--- Select Duration ---">--- Select Duration ---</option>
-                         <option value="1">1 hari</option>
-                         <option value="2">2 hari</option>
-                         <option value="3">3 hari</option>
-                     </select>
-                     <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
+                     <input class="form-control-date <?= form_error('duration') ? 'is-invalid' : '' ?>" type="date" href="#" id="startdate" name="duration">
+
                  </div>
+                 <?= form_error('duration', '<small class="text-danger pl-3">', '</small>'); ?>
              </div>
              <div class="form-group row">
                  <div class="col-sm-2">Assign</div>

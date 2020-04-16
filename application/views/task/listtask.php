@@ -55,8 +55,10 @@
                              <?= $t->progress; ?>
                          </td>
                          <td width="250">
-                             <a href="<?= base_url("task/update"); ?>" class="btn btn-small text-warning"><i class="fas fa-fw fa-edit"></i> Update</a>
-                             <a onclick="deleteConfirm('<?= base_url('task/deletetask/' . $t->id) ?>')" href="#!" class="btn btn-small text-success"><i class="fas fa-fw fa-check-circle"></i> Done</a>
+                             <a href="<?= base_url('task/edittask/' . $t->id) ?>" class="btn btn-small"><i class="fas fa-edit"></i> Update</a>
+                             <a onclick="deleteConfirm('<?= base_url('task/delete/' . $t->id) ?>')" href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
+                             <!-- <a href="< ?= base_url("task/update"); ?>" class="btn btn-small text-warning"><i class="fas fa-fw fa-edit"></i> Update</a>
+                             <a onclick="deleteConfirm('< ?= base_url('task/deletetask/' . $t->id) ?>')" href="#!" class="btn btn-small text-success"><i class="fas fa-fw fa-check-circle"></i> Done</a> -->
                          </td>
                      </tr>
                      <?php $i++; ?>

@@ -68,35 +68,98 @@ class Task extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function update()
+    // public function edit($id = null)
+    // {
+    //     $data['title'] = 'Update';
+    //     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    //     $data['getUser'] = $this->task_model->getAllUser();
+
+    //     if (!isset($id)) redirect('task');
+
+    //     $task = $this->task_model;
+    //     $validation = $this->form_validation;
+    //     $validation->set_rules($task->rules());
+
+
+    //     if ($validation->run()) {
+    //         $task->update();
+    //         $this->session->set_flashdata('success', 'Berhasil disimpan');
+    //     }
+
+
+    //     $data["task"] = $task->getById($id);
+    //     if (!$data["task"]) show_404();
+    //     $this->load->view('templates/header', $data);
+    //     $this->load->view('templates/sidebar', $data);
+    //     $this->load->view('templates/topbar', $data);
+    //     $this->load->view('task/edit', $data);
+    //     $this->load->view('templates/footer');
+
+    //     // $this->load->view("task/edit", $data);
+    // }
+
+    public function delete($id = null)
+    {
+        if (!isset($id)) show_404();
+
+        if ($this->task_model->delete($id)) {
+            redirect(site_url('task'));
+        }
+    }
+
+    public function editTask($id)
     {
         $data['title'] = 'Update';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
 
-        $this->load->model('Task_model', 'update');
+        // $this->load->model('Task_model', 'update');
 
-        $data['update'] = $this->db->get('user_task')->result_array();
+        $where = array('id' => $id);
+        $data['progress'] = $this->task_model->ambil_where($where, 'user_task')->result();
 
-        $this->form_validation->set_rules('progress', 'Progress', 'required|trim');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('task/update', $data);
+        $this->load->view('templates/footer');
+
+        // $this->form_validation->set_rules('progress', 'Progress', 'required|trim');
         // $this->form_validation->set_rules('status', 'Status');
 
 
-        if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('task/update', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $data = [
-                'progress' => $this->input->post('progress')
-                // 'status' => $this->input->post('status')
-            ];
+        // if ($this->form_validation->run() == false) {
+        //     $this->load->view('templates/header', $data);
+        //     $this->load->view('templates/sidebar', $data);
+        //     $this->load->view('templates/topbar', $data);
+        //     $this->load->view('task/update', $data);
+        //     $this->load->view('templates/footer');
+        // } else {
+        //     $progress = $this->input->post('progress');
+        //     $name = $this->input->post('name');
+        //     // 'status' => $this->input->post('status')
 
-            $this->db->insert('user_task', $data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update has been saved!</div>');
-            redirect('task');
-        }
+        //     $this->db->set('progress', $progress);
+        //     $this->db->where('name', $name);
+        //     $this->db->update('user_task');
+
+        //     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update has been saved!</div>');
+        //     redirect('task');
+        // }
+    }
+
+    public function updateTask()
+    {
+        $id = $this->input->post('id');
+        $progress = $this->input->post('progress');
+
+        $data = array(
+            'progress' => $progress
+        );
+
+        $where = array('id' => $id);
+
+        $this->task_model->update($where, $data, 'user_task');
+        redirect('task');
     }
 }
