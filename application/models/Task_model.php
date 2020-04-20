@@ -135,4 +135,9 @@ class Task_model extends CI_Model
         $this->db->where($where);
         $this->db->update($_table, $data);
     }
+
+    public function insertgh($data)
+    {
+        $this->db->insert('user', $data);
+    }
 }
