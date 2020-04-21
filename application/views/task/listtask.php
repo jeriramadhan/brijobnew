@@ -37,7 +37,7 @@
                          <td class="150">
                              <?= substr($t->detik, 0, 120) ?></td>
                          <td>
-                             <img src="<?= base_url('./assets/img/file/' . $t->attach) ?>" width="64" />
+                             <a href="<?= base_url('./assets/img/file/' . $t->attach) ?>" width="64">show</a>
                          </td>
                          <td width="150">
                              <?= $t->priority ?>

@@ -123,6 +123,14 @@ class User extends CI_Controller
         $nama = $user['name'];
         $data['kerjaan'] = $this->task_model->getKerjaanUser($nama);
 
+        if ('dateinput == datenow') {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 3 days left!</div>');
+        } elseif ('dateinput == (datenow - 1)') {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 2 days left!</div>');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 1 days left!</div>');
+        }
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -214,9 +222,11 @@ class User extends CI_Controller
     {
         $id = $this->input->post('id');
         $progress = $this->input->post('progress');
+        $info = $this->input->post('info');
 
         $data = array(
-            'progress' => $progress
+            'progress' => $progress,
+            'info' => $info
         );
 
         $where = array('id' => $id);

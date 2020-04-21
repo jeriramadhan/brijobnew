@@ -41,6 +41,14 @@
              </div>
          </div>
 
+         <div class="form-group row">
+             <label for="info" class="col-sm-2 col-form-label">Information</label>
+             <div class="col-sm-10">
+                 <textarea type="text" class="form-control" id="info" name="info"></textarea>
+                 <?= form_error('info', '<small class="text-danger pl-3">', '</small>'); ?>
+             </div>
+         </div>
+
          <input type="hidden" name="id" value="<?= $task->id; ?>" />
          <button class="btn btn-primary" type="submit">Submit</button>
          <!-- </form> -->

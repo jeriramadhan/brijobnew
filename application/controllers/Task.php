@@ -103,7 +103,7 @@ class Task extends CI_Controller
         if (!isset($id)) show_404();
 
         if ($this->task_model->delete($id)) {
-            redirect(site_url('task'));
+            redirect(site_url('task/listask'));
         }
     }
 
@@ -152,9 +152,11 @@ class Task extends CI_Controller
     {
         $id = $this->input->post('id');
         $progress = $this->input->post('progress');
+        $info = $this->input->post('info');
 
         $data = array(
-            'progress' => $progress
+            'progress' => $progress,
+            'info' => $info
         );
 
         $where = array('id' => $id);

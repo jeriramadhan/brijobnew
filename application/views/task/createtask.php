@@ -47,7 +47,7 @@
                  </div>
              </div>
              <div class="form-group row">
-                 <label for="duration" class="col-sm-2 col-form-label">Duration</label>
+                 <label for="duration" class="col-sm-2 col-form-label">Start Date</label>
                  <div class="col-sm-10">
                      <input class="form-control-date <?= form_error('duration') ? 'is-invalid' : '' ?>" type="date" href="#" id="startdate" name="duration">
 
@@ -78,7 +78,7 @@
                  <label for="progress" class="col-sm-2 col-form-label">Progress</label>
                  <div class="col-sm-10">
                      <input type="text" class="form-control" id="progree" name="progress"></input>
-                     <?= form_error('info', '<small class="text-danger pl-3">', '</small>'); ?>
+                     < ?= form_error('info', '<small class="text-danger pl-3">', '</small>'); ?>
                  </div>
              </div> -->
              <div class="form-group row float-right">

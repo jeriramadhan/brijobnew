@@ -5,7 +5,7 @@
      <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
      <div class="progress">
-         <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+         <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">25%</div>
      </div>
      <br>
      <form class="updateTask" method="post" action="<?= base_url('user/updateTask'); ?>">
@@ -29,6 +29,15 @@
                  <?= form_error('status', '<small class="text-danger pl-3">', '</small>'); ?>
              </div>
          </div>
+
+         <div class="form-group row">
+             <label for="info" class="col-sm-2 col-form-label">Information</label>
+             <div class="col-sm-10">
+                 <textarea type="text" class="form-control" id="info" name="info"></textarea>
+                 <?= form_error('info', '<small class="text-danger pl-3">', '</small>'); ?>
+             </div>
+         </div>
+
 
          <button class="btn btn-primary" type="submit">Submit</button>
      </form>
