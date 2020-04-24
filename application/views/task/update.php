@@ -8,7 +8,7 @@
 
      <?php foreach ($progress as $task) : ?>
          <div class="progress">
-             <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+             <div class="progress-bar" role="progressbar" style="width: <?= $task->progress; ?>%;" aria-valuenow="<?= $task->progress; ?>" aria-valuemin="0" aria-valuemax="100"><?= $task->progress; ?>%</div>
          </div>
          <br>
          <!-- <form class="update" method="post" action="< ?= base_url('task/update'); ?>"> -->
@@ -21,7 +21,7 @@
              </div>
          </div> -->
          <div class="form-group row">
-             <label for="progress" class="col-sm-2 col-form-label">Precentase</label>
+             <label for="progress" class="col-sm-2 col-form-label">Precentase (%)</label>
              <div class="col-sm-10">
                  <input type="text" class="form-control" id="progress" name="progress" value="<?= set_value('progress'); ?>">
                  <?= form_error('progress', '<small class="text-danger pl-3">', '</small>'); ?>
