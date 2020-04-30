@@ -1,0 +1,23 @@
+admin:
+shinta
+shinta@gmail.com
+123456
+
+gh:
+sari
+sari@gmail.com
+sari123
+
+group head
+gh@gmail.com
+gh1234
+
+
+staff:
+fadhilah sari
+fadhilahsari@gmail.com
+fadhilahsari
+
+staff
+staff@gmail.com
+staff123

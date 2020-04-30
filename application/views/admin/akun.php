@@ -34,7 +34,7 @@
                  </thead>
                  <tbody>
                      <?php $i = 1; ?>
-                     <?php foreach ($user as $gh) : ?>
+                     <?php foreach ($grouphead as $gh) : ?>
 
                          <tr>
                              <td width="50">
@@ -55,14 +55,19 @@
                          </tr>
                          <?php $i++; ?>
                      <?php endforeach; ?>
+                     <script>
+                         function deleteConfirm(url) {
+                             $('#btn-delete').attr('href', url);
+                             $('#deleteModal').modal();
+                         }
+                     </script>
 
                  </tbody>
              </table>
          </div>
      </div>
+ </div>
+ <!--/.container-fluid -->
 
  </div>
- <!-- /.container-fluid -->
-
- </div>
- <!-- End of Main Content -->
+ <!--End of Main Content-->

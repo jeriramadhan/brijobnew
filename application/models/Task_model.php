@@ -13,7 +13,7 @@ class Task_model extends CI_Model
     public $priority;
     public $duration;
     public $assign;
-    public $info;
+    // public $info;
 
     public function rules()
     {
@@ -66,9 +66,21 @@ class Task_model extends CI_Model
         return $query->result();
     }
 
+    public function getGh()
+    {
+        $query = $this->db->query('SELECT * FROM user where role_id = 2');
+        return $query->result();
+    }
+
     public function getKerjaanUser($nama)
     {
         $query = $this->db->query('SELECT * FROM user_task where assign = "' . $nama . '"');
+        return $query->result();
+    }
+
+    public function getApprove($approve)
+    {
+        $query = $this->db->query('SELECT * FROM user_task where assign = "' . $approve . '"');
         return $query->result();
     }
 
@@ -83,7 +95,7 @@ class Task_model extends CI_Model
         $this->priority = $post["priority"];
         $this->duration = $post["duration"];
         $this->assign = $post["assign"];
-        $this->info = $post["info"];
+        // $this->info = $post["info"];
         return $this->db->insert($this->_table, $this);
     }
 

@@ -10,14 +10,14 @@
              <div class="form-group row">
                  <label for="name" class="col-sm-2 col-form-label">Name Task</label>
                  <div class="col-sm-10">
-                     <input type="text" class="form-control" id="name" name="name">
+                     <input type="text" class="form-control" id="name" name="name" value="<?= set_value('name'); ?>">
                      <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
                  </div>
              </div>
              <div class="form-group row">
                  <label for="detik" class="col-sm-2 col-form-label">Detik Task</label>
                  <div class="col-sm-10">
-                     <textarea type="text" class="form-control" id="detik" name="detik"></textarea>
+                     <textarea type="text" class="form-control" id="detik" name="detik"><?= set_value('detik'); ?></textarea>
                      <?= form_error('detik', '<small class="text-danger pl-3">', '</small>'); ?>
                  </div>
              </div>
@@ -47,7 +47,7 @@
                  </div>
              </div>
              <div class="form-group row">
-                 <label for="duration" class="col-sm-2 col-form-label">Start Date</label>
+                 <label for="duration" class="col-sm-2 col-form-label">End Date</label>
                  <div class="col-sm-10">
                      <input class="form-control-date <?= form_error('duration') ? 'is-invalid' : '' ?>" type="date" href="#" id="startdate" name="duration">
 
@@ -67,13 +67,13 @@
                      <?= form_error('assign', '<small class="text-danger pl-3">', '</small>'); ?>
                  </div>
              </div>
-             <div class="form-group row">
+             <!-- <div class="form-group row">
                  <label for="info" class="col-sm-2 col-form-label">Information</label>
                  <div class="col-sm-10">
-                     <textarea type="text" class="form-control" id="info" name="info"></textarea>
-                     <?= form_error('info', '<small class="text-danger pl-3">', '</small>'); ?>
+                     <textarea type="text" class="form-control" id="info" name="info"><?= set_value('info'); ?></textarea>
+                     < ?= form_error('info', '<small class="text-danger pl-3">', '</small>'); ?>
                  </div>
-             </div>
+             </div> -->
              <!-- <div class="form-group row">
                  <label for="progress" class="col-sm-2 col-form-label">Progress</label>
                  <div class="col-sm-10">

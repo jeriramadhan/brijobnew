@@ -8,6 +8,7 @@ class Admin extends CI_Controller
         parent::__construct();
         is_logged_in();
         $this->load->library('form_validation');
+        $this->load->model("task_model");
     }
 
     public function index()
@@ -92,12 +93,14 @@ class Admin extends CI_Controller
 
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
-        $passworrd = 123456;
+        $password = 123456;
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Account Group Head';
+            $data['title'] = 'Account';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+            $data['grouphead'] = $this->task_model->getGh();
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -109,7 +112,7 @@ class Admin extends CI_Controller
                 'name' => htmlspecialchars($this->input->post('name', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
                 'image' => 'default.jpg',
-                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                'password' => $password,
                 'role_id' => 2,
                 'is_active' => 1,
                 'date_created' => time()
@@ -120,7 +123,19 @@ class Admin extends CI_Controller
             // $this->_sendemail();
 
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation! your account has been created. Please Login</div>');
-            redirect('admin/akun');
+            redirect('admin/addGh');
         }
+    }
+
+    public function edit($id)
+    {
+        $data['title'] = 'Edit Account Group Head';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/akun', $data);
+        $this->load->view('templates/footer');
     }
 }

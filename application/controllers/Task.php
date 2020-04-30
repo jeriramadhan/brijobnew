@@ -13,7 +13,7 @@ class Task extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Task';
+        $data['title'] = 'List Task';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data["task"] = $this->task_model->getAll();
@@ -35,13 +35,13 @@ class Task extends CI_Controller
         $validation = $this->form_validation;
         $validation->set_rules($task->rules());
 
-        if ('dateinput == datenow') {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 3 days left!</div>');
-        } elseif ('dateinput == (datenow - 1)') {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 2 days left!</div>');
-        } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 1 days left!</div>');
-        }
+        // if ('dateinput == datenow') {
+        //     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 3 days left!</div>');
+        // } elseif ('dateinput == (datenow - 1)') {
+        //     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 2 days left!</div>');
+        // } else {
+        //     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 1 days left!</div>');
+        // }
 
         if ($validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -98,14 +98,6 @@ class Task extends CI_Controller
     //     // $this->load->view("task/edit", $data);
     // }
 
-    public function delete($id = null)
-    {
-        if (!isset($id)) show_404();
-
-        if ($this->task_model->delete($id)) {
-            redirect(site_url('task/listask'));
-        }
-    }
 
     public function editTask($id)
     {
@@ -163,5 +155,70 @@ class Task extends CI_Controller
 
         $this->task_model->update($where, $data, 'user_task');
         redirect('task');
+    }
+
+    public function delete($id = null)
+    {
+        if (!isset($id)) show_404();
+
+        if ($this->task_model->delete($id)) {
+            redirect(site_url('task/listtask'));
+        }
+    }
+
+    public function requesttask()
+    {
+        $data['title'] = 'Request Task';
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $nama = $user['name'];
+        $data['kerjaan'] = $this->task_model->getKerjaanUser($nama);
+
+        // $data['approve'] = $this->db->get('user_task')->result_array();
+
+        // if ($this->form_validation->run() == false) {
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('task/requesttask', $data);
+        $this->load->view('templates/footer');
+        // } else {
+        //     $this->db->update('user_task', ['approve' => $this->input->post('approve')]);
+        //     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update has been saved!</div>');
+        //     redirect('task/requesttask');
+        // }
+    }
+
+    public function accept($id)
+    {
+        $data['title'] = 'Request Task';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+
+        // $this->load->model('Task_model', 'update');
+
+        $where = array('id' => $id);
+        $data['approve'] = $this->task_model->ambil_where($where, 'user_task')->result();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('task/accept', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function updateaccept()
+    {
+        $id = $this->input->post('id');
+        $approve = $this->input->post('approve');
+
+        $data = array(
+            'approve' => $approve
+        );
+
+        $where = array('id' => $id);
+
+        $this->task_model->update($where, $data, 'user_task');
+        redirect('task/requesttask');
     }
 }

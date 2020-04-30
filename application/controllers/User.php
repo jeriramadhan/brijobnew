@@ -123,13 +123,18 @@ class User extends CI_Controller
         $nama = $user['name'];
         $data['kerjaan'] = $this->task_model->getKerjaanUser($nama);
 
-        if ('dateinput == datenow') {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 3 days left!</div>');
-        } elseif ('dateinput == (datenow - 1)') {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 2 days left!</div>');
-        } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 1 days left!</div>');
-        }
+        // $approval = $user['approve'];
+        // if ($approve == approve) {
+        //     $this->input->post('approve');
+        // }
+
+        // if ('dateinput == datenow') {
+        //     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 3 days left!</div>');
+        // } elseif ('dateinput == (datenow - 1)') {
+        //     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 2 days left!</div>');
+        // } else {
+        //     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 1 days left!</div>');
+        // }
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -233,5 +238,28 @@ class User extends CI_Controller
 
         $this->task_model->update($where, $data, 'user_task');
         redirect('user/mytask');
+    }
+
+    public function approval()
+    {
+        $data['title'] = 'Approval';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['getGh'] = $this->task_model->getGh();
+
+        $task = $this->task_model;
+        $validation = $this->form_validation;
+        $validation->set_rules($task->rules());
+
+        if ($validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('user/approval', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $task->save();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Approval has been saved!</div>');
+            redirect('user/approval');
+        }
     }
 }
