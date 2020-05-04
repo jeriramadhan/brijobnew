@@ -48,6 +48,13 @@
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#table_id').DataTable();
+        // $('.dataTables_length').addClass('bs-select');
+    });
+</script>
+
 <script>
     $('.custom-file-input').on('change', function() {
         let fileName = $(this).val().split('\\').pop();
@@ -72,12 +79,7 @@
     });
 </script>
 
-<script>
-    $(document).ready(function() {
-        $('#list').DataTable();
-        // $('.dataTables_length').addClass('bs-select');
-    });
-</script>
+
 
 <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

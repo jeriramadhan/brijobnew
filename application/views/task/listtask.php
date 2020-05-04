@@ -5,10 +5,19 @@
      <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
      <?= $this->session->flashdata('message'); ?>
      <div class="row">
-         <div class="col-md-6 mb-3">
+         <div class="col-md-6 mb-3 dropdown">
              <a href="<?= base_url('task/createtask'); ?>" class="btn btn-primary">Add New</a>
+             <a href="<?= base_url('task/print'); ?>" class="btn btn-success"><i class=" fas fa-fw fa-print"></i>Print</a>
+             <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-download"></i>
+                 Export
+             </button>
+             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                 <a class="dropdown-item" href="<?= base_url('task/pdf'); ?>">PDF</a>
+                 <a class="dropdown-item" href="<?= base_url('task/excel'); ?>">EXCEL</a>
+             </div>
          </div>
-         <table id="list" class="table table-hover">
+
+         <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
              <thead>
                  <tr>
                      <th scope="col">#</th>

@@ -39,15 +39,15 @@
                 <div class="col-sm-10">
                     <select class="form-control" id="priority" name="priority">
                         <option value="--- Select Priority ---">--- Select Priority ---</option>
-                        <option value="High">High</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Low">Low</option>
+                        <option value="3">High</option>
+                        <option value="2">Medium</option>
+                        <option value="1">Low</option>
                     </select>
                     <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="duration" class="col-sm-2 col-form-label">Start Date</label>
+                <label for="duration" class="col-sm-2 col-form-label">End Date</label>
                 <div class="col-sm-10">
                     <input class="form-control-date <?= form_error('duration') ? 'is-invalid' : '' ?>" type="date" href="#" id="startdate" name="duration">
 

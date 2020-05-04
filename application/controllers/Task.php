@@ -1,5 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+require('./vendor/autoload.php');
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Task extends CI_Controller
 {
@@ -220,5 +224,72 @@ class Task extends CI_Controller
 
         $this->task_model->update($where, $data, 'user_task');
         redirect('task/requesttask');
+    }
+
+    public function print()
+    {
+        $data['task'] = $this->task_model->getAll();
+        $this->load->view('task/printtask', $data);
+    }
+
+    public function excel()
+    {
+        $data['task'] = $this->task_model->getAll();
+
+        $spreadsheet = new Spreadsheet();
+
+        $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A1', '#')
+            ->setCellValue('B1', 'Name Task')
+            ->setCellValue('C1', 'Detik Task')
+            ->setCellValue('D1', 'Priority')
+            ->setCellValue('E1', 'Duration')
+            ->setCellValue('F1', 'Assign to')
+            ->setCellValue('G1', 'Information')
+            ->setCellValue('H1', 'Progress');
+
+        $baris = 2;
+        $no = 1;
+
+        foreach ($data['task'] as $t) {
+            $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A' . $baris, $no++)
+                ->setCellValue('B' . $baris, $t->name)
+                ->setCellValue('C' . $baris, $t->detik)
+                ->setCellValue('D' . $baris, $t->priority)
+                ->setCellValue('E' . $baris, $t->duration)
+                ->setCellValue('F' . $baris, $t->assign)
+                ->setCellValue('G' . $baris, $t->info)
+                ->setCellValue('H' . $baris, $t->progress);
+
+            $baris++;
+            $no++;
+        }
+
+        $writer = new Xlsx($spreadsheet);
+
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="List_Task.xlsx"');
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
+    }
+
+    public function pdf()
+    {
+        $this->load->library('dompdf_gen');
+
+        $data['task'] = $this->task_model->getAll();
+
+        $this->load->view('task/listtask_pdf', $data);
+
+        $paper_size = 'A4';
+        $orientation = 'landscape';
+        $html = $this->output->get_output();
+        $this->dompdf->set_paper($paper_size, $orientation);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("List Task.pdf", array('Attachment' => 0));
     }
 }

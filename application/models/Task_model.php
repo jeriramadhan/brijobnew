@@ -153,4 +153,9 @@ class Task_model extends CI_Model
     {
         $this->db->insert('user', $data);
     }
+
+    public function view_data()
+    {
+        return $this->db->get('user_task');
+    }
 }
