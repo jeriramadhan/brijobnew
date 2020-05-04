@@ -55,11 +55,11 @@
                              <?php if ($t->duration == date('Y-m-d', strtotime(' + 3 days'))) {
 
                                 ?>
-                                 <a class="nav-link" data-toggle="modal" data-target="#modal-delete">
+                                 <a class="nav-link" data-toggle="modal" data-target="#modal-delete3">
                                      <i class="far fa-bell"><span class="badge badge-warning navbar-badge">3 days</span></i>
 
                                  </a>
-                                 <div class="modal fade" id="modal-delete">
+                                 <div class="modal fade" id="modal-delete3">
                                      <div class="modal-dialog">
                                          <div class="alert alert-danger" role="alert">Duration task is still 3 days left!</div>
                                      </div>
@@ -68,11 +68,11 @@
                                 }
                                 if ($t->duration == date('Y-m-d', strtotime(' + 2 days'))) {
                                 ?>
-                                 <a class="nav-link" data-toggle="modal" data-target="#modal-delete">
+                                 <a class="nav-link" data-toggle="modal" data-target="#modal-delete2">
                                      <i class="far fa-bell"><span class="badge badge-warning navbar-badge">2 days</span></i>
 
                                  </a>
-                                 <div class="modal fade" id="modal-delete">
+                                 <div class="modal fade" id="modal-delete2">
                                      <div class="modal-dialog">
                                          <div class="alert alert-danger" role="alert">Duration task is still 2 days left!</div>
                                      </div>
@@ -82,11 +82,11 @@
                                 }
                                 if ($t->duration == date('Y-m-d', strtotime(' + 1 days'))) {
                                 ?>
-                                 <a class="nav-link" data-toggle="modal" data-target="#modal-delete">
+                                 <a class="nav-link" data-toggle="modal" data-target="#modal-delete1">
                                      <i class="far fa-bell"><span class="badge badge-warning navbar-badge">1 days</span></i>
 
                                  </a>
-                                 <div class="modal fade" id="modal-delete">
+                                 <div class="modal fade" id="modal-delete1">
                                      <div class="modal-dialog">
                                          <div class="alert alert-danger" role="alert">Duration task is still 1 days left!</div>
                                      </div>

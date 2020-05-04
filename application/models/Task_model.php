@@ -74,7 +74,7 @@ class Task_model extends CI_Model
 
     public function getKerjaanUser($nama)
     {
-        $query = $this->db->query('SELECT * FROM user_task where assign = "' . $nama . '"');
+        $query = $this->db->query('SELECT * FROM user_task where approve = "Approved" or assign = "' . $nama . '"');
         return $query->result();
     }
 
