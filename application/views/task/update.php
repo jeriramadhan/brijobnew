@@ -11,15 +11,7 @@
              <div class="progress-bar" role="progressbar" style="width: <?= $task->progress; ?>%;" aria-valuenow="<?= $task->progress; ?>" aria-valuemin="0" aria-valuemax="100"><?= $task->progress; ?>%</div>
          </div>
          <br>
-         <!-- <form class="update" method="post" action="< ?= base_url('task/update'); ?>"> -->
 
-         <!-- <div class="form-group row">
-             <label for="name" class="col-sm-2 col-form-label">Name</label>
-             <div class="col-sm-10">
-                 <input type="text" class="form-control" id="name" name="name" value="< ?= $user['name']; ?>" readonly>
-                 < ?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
-             </div>
-         </div> -->
          <div class="form-group row">
              <label for="progress" class="col-sm-2 col-form-label">Precentase (%)</label>
              <div class="col-sm-10">

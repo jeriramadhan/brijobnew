@@ -3,9 +3,13 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
-
+    <?= $this->session->flashdata('message'); ?>
     <div class="row">
-        <table id="list" class="table table-striped table-bordered" style="width:100%">
+        <div class="col-md-6 mb-3 dropdown">
+            <a href="<?= base_url('task/print'); ?>" class="btn btn-success"><i class=" fas fa-fw fa-print"></i>Print</a>
+            <a href="<?= base_url('task/excel'); ?>" class="btn btn-warning"><i class=" fas fa-fw fa-download"></i>Excel</a>
+        </div>
+        <table id="datatables" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -17,6 +21,7 @@
                     <th scope="col">Assign to</th>
                     <th scope="col">Information</th>
                     <th scope="col">Progress</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -51,11 +56,16 @@
                         <td width="150">
                             <?= $t->progress; ?>
                         </td>
+                        <td width="150">
+                            <?php if ($t->approve == 'Approved') { ?>
+                                <button type="button" class="btn btn-success">Approved</button>
+                            <?php } else { ?>
+                                <button type="button" class="btn btn-warning"></button>
+                            <?php } ?>
+                        </td>
                         <td width="250">
                             <a href="<?= base_url('task/accept/'  . $t->id); ?>" class="btn btn-small text-success"><i class="fas fa-check"></i> Accept</a>
                             <a onclick="deleteConfirm('<?= base_url('task/delete/' . $t->id) ?>')" href="#!" class="btn btn-small text-danger"><i class="fas fa-times"></i> Decline</a>
-                            <!-- <a href="< ?= base_url("task/update"); ?>" class="btn btn-small text-warning"><i class="fas fa-fw fa-edit"></i> Update</a>
-                        <a onclick="deleteConfirm('< ?= base_url('task/deletetask/' . $t->id) ?>')" href="#!" class="btn btn-small text-success"><i class="fas fa-fw fa-check-circle"></i> Done</a> -->
                         </td>
                     </tr>
                     <?php $i++; ?>
@@ -68,18 +78,6 @@
                 </script>
 
             </tbody>
-            <tfoot>
-                <th>#</th>
-                <th>Name Task</th>
-                <th>Detik Task</th>
-                <th>File</th>
-                <th>Priority</th>
-                <th>Duration</th>
-                <th>Assign to</th>
-                <th>Information</th>
-                <th>Progress</th>
-                <th>Action</th>
-            </tfoot>
         </table>
 
     </div>

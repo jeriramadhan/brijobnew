@@ -47,11 +47,12 @@
 
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
+<script src="<?= base_url('assets/'); ?>dataTables/DataTables/datatables.min.js"></script>
+
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#table_id').DataTable();
-        // $('.dataTables_length').addClass('bs-select');
+        $('#datatables').DataTable();
     });
 </script>
 
@@ -81,13 +82,8 @@
 
 
 
-<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
@@ -123,12 +119,7 @@
     </div>
 </div>
 
-<!-- <script>
-    $(document).ready(function() {
-        $('#dtBasicExample').DataTable();
-        $('.dataTables_length').addClass('bs-select');
-    });
-</script> -->
+
 
 </body>
 

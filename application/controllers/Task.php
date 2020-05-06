@@ -13,6 +13,7 @@ class Task extends CI_Controller
         is_logged_in();
         $this->load->library('form_validation');
         $this->load->model("task_model");
+        $this->load->library('pdf');
     }
 
     public function index()
@@ -39,14 +40,6 @@ class Task extends CI_Controller
         $validation = $this->form_validation;
         $validation->set_rules($task->rules());
 
-        // if ('dateinput == datenow') {
-        //     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 3 days left!</div>');
-        // } elseif ('dateinput == (datenow - 1)') {
-        //     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 2 days left!</div>');
-        // } else {
-        //     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 1 days left!</div>');
-        // }
-
         if ($validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -58,90 +51,6 @@ class Task extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Create task has been saved!</div>');
             redirect('task');
         }
-    }
-
-    public function listTask()
-    {
-        $data['title'] = 'List Task';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('user/listtask', $data);
-        $this->load->view('templates/footer');
-    }
-
-    // public function edit($id = null)
-    // {
-    //     $data['title'] = 'Update';
-    //     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-    //     $data['getUser'] = $this->task_model->getAllUser();
-
-    //     if (!isset($id)) redirect('task');
-
-    //     $task = $this->task_model;
-    //     $validation = $this->form_validation;
-    //     $validation->set_rules($task->rules());
-
-
-    //     if ($validation->run()) {
-    //         $task->update();
-    //         $this->session->set_flashdata('success', 'Berhasil disimpan');
-    //     }
-
-
-    //     $data["task"] = $task->getById($id);
-    //     if (!$data["task"]) show_404();
-    //     $this->load->view('templates/header', $data);
-    //     $this->load->view('templates/sidebar', $data);
-    //     $this->load->view('templates/topbar', $data);
-    //     $this->load->view('task/edit', $data);
-    //     $this->load->view('templates/footer');
-
-    //     // $this->load->view("task/edit", $data);
-    // }
-
-
-    public function editTask($id)
-    {
-        $data['title'] = 'Update';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-
-        // $this->load->model('Task_model', 'update');
-
-        $where = array('id' => $id);
-        $data['progress'] = $this->task_model->ambil_where($where, 'user_task')->result();
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('task/update', $data);
-        $this->load->view('templates/footer');
-
-        // $this->form_validation->set_rules('progress', 'Progress', 'required|trim');
-        // $this->form_validation->set_rules('status', 'Status');
-
-
-        // if ($this->form_validation->run() == false) {
-        //     $this->load->view('templates/header', $data);
-        //     $this->load->view('templates/sidebar', $data);
-        //     $this->load->view('templates/topbar', $data);
-        //     $this->load->view('task/update', $data);
-        //     $this->load->view('templates/footer');
-        // } else {
-        //     $progress = $this->input->post('progress');
-        //     $name = $this->input->post('name');
-        //     // 'status' => $this->input->post('status')
-
-        //     $this->db->set('progress', $progress);
-        //     $this->db->where('name', $name);
-        //     $this->db->update('user_task');
-
-        //     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update has been saved!</div>');
-        //     redirect('task');
-        // }
     }
 
     public function updateTask()
@@ -178,19 +87,11 @@ class Task extends CI_Controller
         $nama = $user['name'];
         $data['kerjaan'] = $this->task_model->getKerjaanUser($nama);
 
-        // $data['approve'] = $this->db->get('user_task')->result_array();
-
-        // if ($this->form_validation->run() == false) {
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('task/requesttask', $data);
         $this->load->view('templates/footer');
-        // } else {
-        //     $this->db->update('user_task', ['approve' => $this->input->post('approve')]);
-        //     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update has been saved!</div>');
-        //     redirect('task/requesttask');
-        // }
     }
 
     public function accept($id)
@@ -277,19 +178,34 @@ class Task extends CI_Controller
 
     public function pdf()
     {
-        $this->load->library('dompdf_gen');
+        // $this->load->library('dompdf_gen');
+
+        // $data['task'] = $this->task_model->getAll();
+
+        // $this->load->view('task/listtask_pdf', $data);
+
+        // $paper_size = 'A4';
+        // $orientation = 'landscape';
+        // $html = $this->output->get_output();
+        // $this->dompdf->set_paper($paper_size, $orientation);
+
+        // $this->dompdf->load_html($html);
+        // $this->dompdf->render();
+        // $this->dompdf->stream("List Task.pdf", array('Attachment' => 0));
+
+
+
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $pdf->setPrintFooter(false);
+        $pdf->setPrintHeader(false);
+        $pdf->SetAutoPageBreak(true, PDF_MARGIN_BOTTOM);
+        $pdf->AddPage('');
+        $pdf->Write(0, 'BRIJOB', '', 0, 'L', true, 0, false, false, 0);
+        $pdf->SetFont('');
 
         $data['task'] = $this->task_model->getAll();
 
-        $this->load->view('task/listtask_pdf', $data);
-
-        $paper_size = 'A4';
-        $orientation = 'landscape';
-        $html = $this->output->get_output();
-        $this->dompdf->set_paper($paper_size, $orientation);
-
-        $this->dompdf->load_html($html);
-        $this->dompdf->render();
-        $this->dompdf->stream("List Task.pdf", array('Attachment' => 0));
+        $pdf->writeHTML($data);
+        $pdf->Output('file-pdf-codeigniter.pdf', 'I');
     }
 }

@@ -5,19 +5,13 @@
      <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
      <?= $this->session->flashdata('message'); ?>
      <div class="row">
-         <div class="col-md-6 mb-3 dropdown">
+         <div class="col-md-6 mb-3">
              <a href="<?= base_url('task/createtask'); ?>" class="btn btn-primary">Add New</a>
              <a href="<?= base_url('task/print'); ?>" class="btn btn-success"><i class=" fas fa-fw fa-print"></i>Print</a>
-             <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-download"></i>
-                 Export
-             </button>
-             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                 <a class="dropdown-item" href="<?= base_url('task/pdf'); ?>">PDF</a>
-                 <a class="dropdown-item" href="<?= base_url('task/excel'); ?>">EXCEL</a>
-             </div>
+             <a href="<?= base_url('task/excel'); ?>" class="btn btn-warning"><i class=" fas fa-fw fa-download"></i>Excel</a>
          </div>
 
-         <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
+         <table id="datatables" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
              <thead>
                  <tr>
                      <th scope="col">#</th>
@@ -35,7 +29,6 @@
              <tbody>
                  <?php $i = 1; ?>
                  <?php foreach ($task as $t) : ?>
-
 
                      <tr>
                          <td width="50">
@@ -151,7 +144,7 @@
                  </script>
 
              </tbody>
-             <tfoot>
+             <!-- <tfoot>
                  <th>#</th>
                  <th>Name Task</th>
                  <th>Detik Task</th>
@@ -162,7 +155,7 @@
                  <th>Information</th>
                  <th>Progress</th>
                  <th>Action</th>
-             </tfoot>
+             </tfoot> -->
          </table>
 
      </div>

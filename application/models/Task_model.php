@@ -122,7 +122,7 @@ class Task_model extends CI_Model
     private function _uploadFile()
     {
         $config['upload_path']          = './assets/img/file/';
-        $config['allowed_types']        = 'pdf|docx|jpg|xls';
+        $config['allowed_types']        = 'pdf|docx|jpg|xlsx';
         // $config['file_name']            = $this->id;
         $config['overwrite']            = true;
         $config['max_size']             = 0; // 1MB
