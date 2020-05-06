@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="user">
         <div class="sidebar-brand-text mx-3">BRIJOB</div>
     </a>
 
@@ -28,7 +28,7 @@
             <?= $m['menu']; ?>
         </div>
 
-        <!-- siapkan sub menu sesuai menu -->
+        <!-- <siapkan sub menu sesuai menu -->
         <?php
         $querySubMenu = "SELECT *
                         FROM `user_sub_menu` JOIN `user_menu` 
@@ -47,7 +47,9 @@
                 <?php endif; ?>
                 <a class="nav-link pb-0" href="<?= base_url($sm['url']); ?>">
                     <i class="<?= $sm['icon']; ?>"></i>
-                    <span><?= $sm['title']; ?></span></a>
+                    <span>
+                        <?= $sm['title']; ?>
+                    </span></a>
                 </li>
             <?php endforeach; ?>
 

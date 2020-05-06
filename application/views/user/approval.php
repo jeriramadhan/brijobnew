@@ -47,15 +47,22 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="duration" class="col-sm-2 col-form-label">End Date</label>
+                <label for="startdate" class="col-sm-2 col-form-label">Start Date</label>
                 <div class="col-sm-10">
-                    <input class="form-control-date <?= form_error('duration') ? 'is-invalid' : '' ?>" type="date" href="#" id="startdate" name="duration">
+                    <input class="form-control-date <?= form_error('startdate') ? 'is-invalid' : '' ?>" type="date" href="#" id="startdate" name="startdate">
 
                 </div>
                 <?= form_error('duration', '<small class="text-danger pl-3">', '</small>'); ?>
             </div>
             <div class="form-group row">
-                <div class="col-sm-2">Assign</div>
+                <label for="duration" class="col-sm-2 col-form-label">End Date</label>
+                <div class="col-sm-10">
+                    <input class="form-control-date <?= form_error('duration') ? 'is-invalid' : '' ?>" type="date" href="#" id="startdate" name="duration">
+                </div>
+                <?= form_error('duration', '<small class="text-danger pl-3">', '</small>'); ?>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2">Approval</div>
                 <div class="col-sm-10">
                     <select class="form-control" id="assign" name="assign" value="<?= set_value('assign'); ?>">
                         <?php foreach ($getGh as $row) {

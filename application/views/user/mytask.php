@@ -42,14 +42,15 @@
                          </td>
 
                          <td width="150">
-                             <?php if ($t->priority == "High") { ?>
+                             <?php if ($t->priority == "3") { ?>
                                  <button type="button" class="btn btn-danger">High</button>
-                             <?php } else if ($t->priority == "Medium") { ?>
+                             <?php } else if ($t->priority == "2") { ?>
                                  <button type="button" class="btn btn-warning">Medium</button>
                              <?php } else { ?>
                                  <button type="button" class="btn btn-info">Low</button>
                              <?php } ?>
                          </td>
+
                          <td width="150">
                              <?= $t->startdate; ?>
                          </td>

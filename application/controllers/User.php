@@ -117,24 +117,11 @@ class User extends CI_Controller
 
     public function myTask()
     {
-        $data['title'] = 'My Task';
+        $data['title'] = 'List Task';
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $nama = $user['name'];
         $data['kerjaan'] = $this->task_model->getKerjaanUser($nama);
-
-        // $approval = $user['approve'];
-        // if ($approve == approve) {
-        //     $this->input->post('approve');
-        // }
-
-        // if ('dateinput == datenow') {
-        //     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 3 days left!</div>');
-        // } elseif ('dateinput == (datenow - 1)') {
-        //     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 2 days left!</div>');
-        // } else {
-        //     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Duration task is still 1 days left!</div>');
-        // }
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -242,7 +229,7 @@ class User extends CI_Controller
 
     public function approval()
     {
-        $data['title'] = 'Approval';
+        $data['title'] = 'Create Task';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['getGh'] = $this->task_model->getGh();
 

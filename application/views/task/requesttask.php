@@ -19,7 +19,7 @@
                     <th scope="col">Priority</th>
                     <th scope="col">Start Date</th>
                     <th scope="col">End Date</th>
-                    <th scope="col">Assign to</th>
+                    <th scope="col">Approval</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -41,14 +41,74 @@
                             <a href="<?= base_url('./assets/img/file/' . $t->attach) ?>" width="64">show</a>
                         </td>
                         <td width="150">
-                            <?= $t->priority ?>
+                            <?php if ($t->priority == "3") { ?>
+                                <button type="button" class="btn btn-danger">High</button>
+                            <?php } else if ($t->priority == "2") { ?>
+                                <button type="button" class="btn btn-warning">Medium</button>
+                            <?php } else { ?>
+                                <button type="button" class="btn btn-info">Low</button>
+                            <?php } ?>
                         </td>
                         <td width="150">
                             <?= $t->startdate; ?>
                         </td>
                         <td width="150">
                             <?= $t->duration ?>
-                        </td>
+                            <?php if ($t->duration == date('Y-m-d', strtotime(' + 3 days'))) {
+
+                            ?>
+                                <a class="nav-link" data-toggle="modal" data-target="#modal-delete">
+                                    <i class="far fa-bell"><span class="badge badge-warning navbar-badge">3 days</span></i>
+
+                                </a>
+                                <div class="modal fade" id="modal-delete">
+                                    <div class="modal-dialog">
+                                        <div class="alert alert-danger" role="alert">Duration task is still 3 days left!</div>
+                                    </div>
+                                </div>
+                            <?php
+                            }
+                            if ($t->duration == date('Y-m-d', strtotime(' + 2 days'))) {
+                            ?>
+                                <a class="nav-link" data-toggle="modal" data-target="#modal-delete">
+                                    <i class="far fa-bell"><span class="badge badge-warning navbar-badge">2 days</span></i>
+
+                                </a>
+                                <div class="modal fade" id="modal-delete">
+                                    <div class="modal-dialog">
+                                        <div class="alert alert-danger" role="alert">Duration task is still 2 days left!</div>
+                                    </div>
+                                </div>
+
+                            <?php
+                            }
+                            if ($t->duration == date('Y-m-d', strtotime(' + 1 days'))) {
+                            ?>
+                                <a class="nav-link" data-toggle="modal" data-target="#modal-delete">
+                                    <i class="far fa-bell"><span class="badge badge-warning navbar-badge">1 days</span></i>
+
+                                </a>
+                                <div class="modal fade" id="modal-delete">
+                                    <div class="modal-dialog">
+                                        <div class="alert alert-danger" role="alert">Duration task is still 1 days left!</div>
+                                    </div>
+                                </div>
+                            <?php
+                            }
+                            if ($t->duration == date('Y-m-d')) {
+                            ?>
+                                <a class="nav-link" data-toggle="modal" data-target="#modal-delete">
+                                    <i class="far fa-bell"><span class="badge badge-warning navbar-badge">this days</span></i>
+
+                                </a>
+                                <div class="modal fade" id="modal-delete">
+                                    <div class="modal-dialog">
+                                        <div class="alert alert-danger" role="alert">Duration task is due date!</div>
+                                    </div>
+                                </div>
+                            <?php
+                            }
+                            ?>
                         <td width="150">
                             <?= $t->assign ?>
                         </td>

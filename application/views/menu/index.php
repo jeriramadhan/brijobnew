@@ -27,12 +27,18 @@
                              <th scope="row"><?= $i; ?></th>
                              <td><?= $m['menu']; ?></td>
                              <td>
-                                 <a href="" class="badge badge-success">edit</a>
-                                 <a href="" class="badge badge-danger">delete</a>
+                                 <a href="" class="badge badge-success">Edit</a>
+                                 <a onclick="deleteConfirm('<?= base_url('menu/delete/') ?>')" href="#!" class="badge badge-danger">Delete</a>
                              </td>
                          </tr>
                          <?php $i++; ?>
                      <?php endforeach; ?>
+                     <script>
+                         function deleteConfirm(url) {
+                             $('#btn-delete').attr('href', url);
+                             $('#deleteModal').modal();
+                         }
+                     </script>
                  </tbody>
              </table>
          </div>

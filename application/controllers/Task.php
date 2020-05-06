@@ -75,13 +75,13 @@ class Task extends CI_Controller
         if (!isset($id)) show_404();
 
         if ($this->task_model->delete($id)) {
-            redirect(site_url('task/listtask'));
+            redirect(site_url('task'));
         }
     }
 
     public function requesttask()
     {
-        $data['title'] = 'Request Task';
+        $data['title'] = 'Approval';
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $nama = $user['name'];

@@ -6,6 +6,7 @@ class Menu extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model("task_model");
         is_logged_in();
     }
 
@@ -63,6 +64,15 @@ class Menu extends CI_Controller
             $this->db->insert('user_sub_menu', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">New sub menu added!</div>');
             redirect('menu/submenu');
+        }
+    }
+
+    public function delete($id = null)
+    {
+        if (!isset($id)) show_404();
+
+        if ($this->task_model->delete($id)) {
+            redirect(site_url('menu'));
         }
     }
 }
