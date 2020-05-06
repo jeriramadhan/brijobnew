@@ -144,10 +144,11 @@ class Task extends CI_Controller
             ->setCellValue('B1', 'Name Task')
             ->setCellValue('C1', 'Detik Task')
             ->setCellValue('D1', 'Priority')
-            ->setCellValue('E1', 'Duration')
-            ->setCellValue('F1', 'Assign to')
-            ->setCellValue('G1', 'Information')
-            ->setCellValue('H1', 'Progress');
+            ->setCellValue('E1', 'Start Date')
+            ->setCellValue('F1', 'End Date')
+            ->setCellValue('G1', 'Assign to')
+            ->setCellValue('H1', 'Information')
+            ->setCellValue('I1', 'Progress');
 
         $baris = 2;
         $no = 1;
@@ -158,10 +159,11 @@ class Task extends CI_Controller
                 ->setCellValue('B' . $baris, $t->name)
                 ->setCellValue('C' . $baris, $t->detik)
                 ->setCellValue('D' . $baris, $t->priority)
-                ->setCellValue('E' . $baris, $t->duration)
-                ->setCellValue('F' . $baris, $t->assign)
-                ->setCellValue('G' . $baris, $t->info)
-                ->setCellValue('H' . $baris, $t->progress);
+                ->setCellValue('E' . $baris, $t->startdate)
+                ->setCellValue('F' . $baris, $t->duration)
+                ->setCellValue('G' . $baris, $t->assign)
+                ->setCellValue('H' . $baris, $t->info)
+                ->setCellValue('I' . $baris, $t->progress);
 
             $baris++;
             $no++;

@@ -17,7 +17,8 @@
                      <th scope="col">Name Task</th>
                      <th scope="col">File</th>
                      <th scope="col">Priority</th>
-                     <th scope="col">Duration</th>
+                     <th scope="col">Start Date</th>
+                     <th scope="col">End Date</th>
                      <th scope="col">Assign</th>
                      <th scope="col">Information</th>
                      <th scope="col">Progress</th>
@@ -48,6 +49,9 @@
                              <?php } else { ?>
                                  <button type="button" class="btn btn-info">Low</button>
                              <?php } ?>
+                         </td>
+                         <td width="150">
+                             <?= $t->startdate; ?>
                          </td>
 
                          <td width="150">

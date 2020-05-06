@@ -11,6 +11,7 @@ class Task_model extends CI_Model
     public $detik;
     public $attach = "default.pdf";
     public $priority;
+    public $startdate;
     public $duration;
     public $assign;
     // public $info;
@@ -36,6 +37,11 @@ class Task_model extends CI_Model
                 'rules' => 'required'
             ],
 
+            [
+                'field' => 'startdate',
+                'label' => 'Start Date',
+                'rules' => 'required'
+            ],
             [
                 'field' => 'duration',
                 'label' => 'Duration',
@@ -93,6 +99,7 @@ class Task_model extends CI_Model
         $this->detik = $post["detik"];
         $this->attach = $this->_uploadFile();
         $this->priority = $post["priority"];
+        $this->startdate = $post["startdate"];
         $this->duration = $post["duration"];
         $this->assign = $post["assign"];
         // $this->info = $post["info"];

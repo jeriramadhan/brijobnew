@@ -67,20 +67,7 @@
                     <?= form_error('assign', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
             </div>
-            <!-- <div class="form-group row">
-                <label for="info" class="col-sm-2 col-form-label">Information</label>
-                <div class="col-sm-10">
-                    <textarea type="text" class="form-control" id="info" name="info"><?= set_value('info'); ?></textarea>
-                    < ?= form_error('info', '<small class="text-danger pl-3">', '</small>'); ?>
-                </div>
-            </div> -->
-            <!-- <div class="form-group row">
-            <label for="progress" class="col-sm-2 col-form-label">Progress</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="progree" name="progress"></input>
-                < ?= form_error('info', '<small class="text-danger pl-3">', '</small>'); ?>
-            </div>
-        </div> -->
+
             <div class="form-group row float-right">
                 <div class="col-sm-10">
                     <button type="submit" class="btn btn-primary">Send</button>

@@ -19,7 +19,8 @@
                      <th scope="col">Detik Task</th>
                      <th scope="col">File</th>
                      <th scope="col">Priority</th>
-                     <th scope="col">Duration</th>
+                     <th scope="col">Start Datw</th>
+                     <th scope="col">End Date</th>
                      <th scope="col">Assign to</th>
                      <th scope="col">Information</th>
                      <th scope="col">Progress</th>
@@ -50,6 +51,10 @@
                              <?php } else { ?>
                                  <button type="button" class="btn btn-info">Low</button>
                              <?php } ?>
+
+                         <td width="150">
+                             <?= $t->startdate; ?>
+                         </td>
 
                          </td>
                          <td width="150">
