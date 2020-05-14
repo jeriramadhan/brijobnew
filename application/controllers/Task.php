@@ -96,7 +96,7 @@ class Task extends CI_Controller
 
     public function accept($id)
     {
-        $data['title'] = 'Request Task';
+        $data['title'] = 'Approval';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
 

@@ -19,7 +19,7 @@
                     <th scope="col">Priority</th>
                     <th scope="col">Start Date</th>
                     <th scope="col">End Date</th>
-                    <th scope="col">Approval</th>
+                    <th scope="col">Assign</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -122,7 +122,7 @@
                         </td>
                         <td width="250">
                             <a href="<?= base_url('task/accept/'  . $t->id); ?>" class="btn btn-small text-success"><i class="fas fa-check"></i> Accept</a>
-                            <a onclick="deleteConfirm('<?= base_url('task/delete/' . $t->id) ?>')" href="#!" class="btn btn-small text-danger"><i class="fas fa-times"></i> Decline</a>
+                            <!-- <a onclick="deleteConfirm('< ?= base_url('task/delete/' . $t->id) ?>')" href="#!" class="btn btn-small text-danger"><i class="fas fa-times"></i> Decline</a> -->
                         </td>
                     </tr>
                     <?php $i++; ?>

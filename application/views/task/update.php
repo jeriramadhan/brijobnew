@@ -34,6 +34,20 @@
          </div>
 
          <div class="form-group row">
+             <div class="col-sm-2">Attach File</div>
+             <div class="col-sm-10">
+                 <div class="row">
+                     <div class="col-sm">
+                         <div class="custom-file">
+                             <input type="file" class="custom-file-input" id="attach" name="attach">
+                             <label class="custom-file-label" for="attach">Choose File</label>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+
+         <div class="form-group row">
              <label for="info" class="col-sm-2 col-form-label">Information</label>
              <div class="col-sm-10">
                  <textarea type="text" class="form-control" id="info" name="info"></textarea>

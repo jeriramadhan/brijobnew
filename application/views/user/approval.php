@@ -62,16 +62,29 @@
                 <?= form_error('duration', '<small class="text-danger pl-3">', '</small>'); ?>
             </div>
             <div class="form-group row">
-                <div class="col-sm-2">Approval</div>
+                <div class="col-sm-2">Assign</div>
                 <div class="col-sm-10">
-                    <select class="form-control" id="assign" name="assign" value="<?= set_value('assign'); ?>">
-                        <?php foreach ($getGh as $row) {
+                    <select class="form-control" id="assign" name="assign">
+                        <?php foreach ($getUser as $row) {
                             echo '<option value="' . $row->name . '">' . $row->name . '</option>'; //nampilin kodenya disini
                         }
                         ?>
                     </select>
                     <!-- <input type="text" class="form-control" id="assign" name="assign"> -->
                     <?= form_error('assign', '<small class="text-danger pl-3">', '</small>'); ?>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2">Approval</div>
+                <div class="col-sm-10">
+                    <select class="form-control" id="approval" name="approval" value="<?= set_value('approval'); ?>">
+                        <?php foreach ($getGh as $row) {
+                            echo '<option value="' . $row->name . '">' . $row->name . '</option>'; //nampilin kodenya disini
+                        }
+                        ?>
+                    </select>
+                    <!-- <input type="text" class="form-control" id="approval" name="approval"> -->
+                    <?= form_error('approval', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
             </div>
 

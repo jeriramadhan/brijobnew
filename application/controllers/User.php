@@ -202,6 +202,8 @@ class User extends CI_Controller
 
         $where = array('id' => $id);
         $data['progress'] = $this->task_model->ambil_where($where, 'user_task')->result();
+        $data['info'] = $this->task_model->ambil_where($where, 'user_task')->result();
+        $data['attach'] = $this->task_model->ambil_where($where, 'user_task')->result();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -215,6 +217,7 @@ class User extends CI_Controller
         $id = $this->input->post('id');
         $progress = $this->input->post('progress');
         $info = $this->input->post('info');
+
 
         $data = array(
             'progress' => $progress,
@@ -232,6 +235,7 @@ class User extends CI_Controller
         $data['title'] = 'Create Task';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['getGh'] = $this->task_model->getGh();
+        $data['getUser'] = $this->task_model->getAllUser();
 
         $task = $this->task_model;
         $validation = $this->form_validation;

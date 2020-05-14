@@ -3,6 +3,10 @@ shinta
 shinta@gmail.com
 123456
 
+admin
+admin@gmail.com
+12345678
+
 gh:
 sari
 sari@gmail.com
