@@ -75,6 +75,14 @@
                      <?= form_error('assign', '<small class="text-danger pl-3">', '</small>'); ?>
                  </div>
              </div>
+             <div class="form-group row">
+                 <div class="col-sm-2">Approval</div>
+                 <div class="col-sm-10">
+                     <input type="text" class="form-control" id="approval" name="approval" value="<?= $user['name']; ?>">
+                     <?= form_error('approval', '<small class="text-danger pl-3">', '</small>'); ?>
+                 </div>
+             </div>
+
              <div class="form-group row float-right">
                  <div class="col-sm-10">
                      <button type="submit" class="btn btn-primary">Save</button>

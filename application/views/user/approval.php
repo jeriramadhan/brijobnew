@@ -64,13 +64,14 @@
             <div class="form-group row">
                 <div class="col-sm-2">Assign</div>
                 <div class="col-sm-10">
-                    <select class="form-control" id="assign" name="assign">
-                        <?php foreach ($getUser as $row) {
+                    <!-- <select class="form-control" id="assign" name="assign">
+                        < ?php foreach ($getUser as $row) {
                             echo '<option value="' . $row->name . '">' . $row->name . '</option>'; //nampilin kodenya disini
                         }
                         ?>
-                    </select>
+                    </select> -->
                     <!-- <input type="text" class="form-control" id="assign" name="assign"> -->
+                    <input type="text" class="form-control" id="assign" name="assign" value="<?= $user['name']; ?>">
                     <?= form_error('assign', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
             </div>
