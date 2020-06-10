@@ -83,6 +83,13 @@
                  </div>
              </div>
 
+            <div class="form-group row">
+                 <div class="col-sm-10">
+                     <input type="hidden" class="form-control" id="approve" name="approve" value="Approved">
+                     <?= form_error('approve', '<small class="text-danger pl-3">', '</small>'); ?>
+                 </div>
+             </div>
+
              <div class="form-group row float-right">
                  <div class="col-sm-10">
                      <button type="submit" class="btn btn-primary">Save</button>

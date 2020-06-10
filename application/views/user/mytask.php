@@ -22,6 +22,7 @@
                      <th scope="col">Assign</th>
                      <th scope="col">Information</th>
                      <th scope="col">Progress</th>
+                     <th scope="col">Status Approval</th>
                      <th scope="col">Action</th>
                  </tr>
              </thead>
@@ -134,8 +135,21 @@
 
                          </td>
 
+                         <td width="150">
+                            <?php if ($t->approve == "Approved") { ?>
+                                 <button type="button" class="btn btn-success">Acc</button>
+                             <?php } else { ?>
+                                 <button type="button" class="btn btn-warning">Belum Acc</button>
+                             <?php } ?>
+                         </td>
+
                          <td width="250">
-                             <a href="<?= base_url('user/editTask/' . $t->id) ?>" class="btn btn-small"><i class="fas fa-edit"></i> Update</a>
+                             <?php if ($t->approve == "Approved") { ?>
+                                 <a href="<?= base_url('user/editTask/' . $t->id) ?>" class="btn btn-small"><i class="fas fa-edit"></i> Update</a>
+                             <?php } else { ?>
+                                 <p>Belum dapat di update</p>
+                             <?php } ?>
+                             <!-- <a href="<?= base_url('user/editTask/' . $t->id) ?>" class="btn btn-small"><i class="fas fa-edit"></i> Update</a> -->
 
                          </td>
                      </tr>

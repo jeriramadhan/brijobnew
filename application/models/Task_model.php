@@ -59,6 +59,10 @@ class Task_model extends CI_Model
                 'field' => 'approval',
                 'label' => 'Approval',
                 'rules' => 'required'
+            ],
+            [
+                'field' => 'approve',
+                'label' => 'approve',
             ]
         ];
     }
@@ -87,7 +91,14 @@ class Task_model extends CI_Model
 
     public function getKerjaanUser($nama)
     {
-        $query = $this->db->query('SELECT * FROM user_task where approve = "Approved" or assign = "' . $nama . '"');
+        $query = $this->db->query('SELECT * FROM user_task where approval = "' . $nama . '"');
+        // $query = $this->db->query('SELECT * FROM user_task where approve = "Approved" or assign = "' . $nama . '"');
+        return $query->result();
+    }
+
+    public function getKerjaanForUser($nama)
+    {
+        $query = $this->db->query('SELECT * FROM user_task where assign = "' . $nama . '"');
         return $query->result();
     }
 
@@ -110,6 +121,7 @@ class Task_model extends CI_Model
         $this->duration = $post["duration"];
         $this->assign = $post["assign"];
         $this->approval = $post["approval"];
+        $this->approve = $post["approve"];
         // $this->info = $post["info"];
         return $this->db->insert($this->_table, $this);
     }

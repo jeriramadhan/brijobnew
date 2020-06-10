@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-require('./vendor/autoload.php');
+// require('./vendor/autoload.php');
 
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+// use PhpOffice\PhpSpreadsheet\Spreadsheet;
+// use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Task extends CI_Controller
 {
@@ -127,11 +127,11 @@ class Task extends CI_Controller
         redirect('task/requesttask');
     }
 
-    public function print()
-    {
-        $data['task'] = $this->task_model->getAll();
-        $this->load->view('task/printtask', $data);
-    }
+    // public function print()
+    // {
+    //     $data['task'] = $this->task_model->getAll();
+    //     $this->load->view('task/printtask', $data);
+    // }
 
     public function excel()
     {

@@ -117,7 +117,7 @@
                             <?php if ($t->approve == 'Approved') { ?>
                                 <button type="button" class="btn btn-success">Approved</button>
                             <?php } else { ?>
-                                <button type="button" class="btn btn-warning"></button>
+                                <button type="button" class="btn btn-warning">Not Approved</button>
                             <?php } ?>
                         </td>
                         <td width="250">
